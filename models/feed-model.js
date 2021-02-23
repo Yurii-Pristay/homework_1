@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const feedItemSchema = new mongoose.Schema({
+const newsFeedItemSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'Title is required'],
@@ -19,7 +19,7 @@ const feedItemSchema = new mongoose.Schema({
     }
 });
 
-const feedSchema = new mongoose.Schema({
+const newsFeedSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, 'Username is required'],
@@ -27,9 +27,9 @@ const feedSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 100
   },
-  feeds: [feedItemSchema]
+  feeds: [newsFeedItemSchema]
 });
 
-const Feed = mongoose.model('Feed', feedSchema);
+const NewsFeed = mongoose.model('Feed', newsFeedSchema);
 
-module.exports = Feed;
+module.exports = NewsFeed;
