@@ -5,10 +5,11 @@ const cors = require('cors');
 const apiRouter = require('./routes/api-router');
 
 mongoose.connect(
-    'mongodb+srv://username:fCr1CcXLFzrFbD6k@feedreader-celdd.mongodb.net/FeedReaderDB?retryWrites=true&w=majority',
-    { useNewUrlParser: true })
+    'mongodb+srv://username:12345@infsys-ck4et.mongodb.net/test?retryWrites=true&w=majority',
+    { useNewUrlParser: true }
+)
 .then(() => console.log('Connected to MongoDB'))
-.catch(() => console.log('Connection to MongoDB failed'));
+.catch((err) => console.log('Connection to MongoDB failed', err));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
