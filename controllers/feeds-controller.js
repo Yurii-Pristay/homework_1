@@ -2,10 +2,10 @@ const Feed = require('../models/feed-model');
 const Parser = require('rss-parser');
 const parser = new Parser({ timeout: 5000 });
  
-const getFeed = async (req, res) => {
+const getMyFeed = async (req, res) => {
   try {
     const { url } = req.query;
-    if (!url) return getFeeds(req, res);
+    if (!url) return getMyFeeds(req, res);
 
     const feed = await parser.parseURL(url);
 
@@ -15,12 +15,12 @@ const getFeed = async (req, res) => {
   }
 };
 
-const getFeeds = async (req, res) => {
+const getMyFeeds = async (req, res) => {
     const allFeeds = await Feed.find().select('username feeds');
     return res.status(200).json(allFeeds);
 };
 
-const registerFeed = async (req, res) => {
+const registerMyFeed = async (req, res) => {
     try {
       const { username, title, url } = req.body;
       await Feed.findOneAndUpdate(
@@ -34,7 +34,7 @@ const registerFeed = async (req, res) => {
     }
 };
 
-const deleteFeed = async (req, res) => {
+const deleteMyFeed = async (req, res) => {
     try {
       const { feedId, feedItemId } = req.body;
 
@@ -50,4 +50,4 @@ const deleteFeed = async (req, res) => {
     }
 };
 
-module.exports = { registerFeed, deleteFeed, getFeed };
+module.exports = { registerMyFeed, deleteMyFeed, getMyFeed };
