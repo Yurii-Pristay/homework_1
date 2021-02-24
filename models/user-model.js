@@ -25,6 +25,7 @@ accountSchema.methods.generateAuthToken = (expireTime = '30d') => {
       'FeedReader',
       { expiresIn: expireTime }
     );
+    console.log();
     return token;
 };  
 

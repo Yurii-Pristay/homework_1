@@ -12,10 +12,13 @@ const signUserUp = async (req, res) => {
       await user.save();
   
       const token = user.generateAuthToken();
+
+      console.log();
       return res.header('access-token', token).status(200).json({ message: 'User created!' });
     } catch (err) {
       return res.status(500).json(err);
     }
+    
 };
   
 const signUserIn = async (req, res) => {
@@ -29,6 +32,8 @@ const signUserIn = async (req, res) => {
       if (!validPassword) return res.status(400).json({ message: 'Invalid username or password!' });
 
       const token = user.generateAuthToken();
+
+      console.log();
 
       return res.header('access-token', token).status(200).json({ message: 'Signed in successfuly!' });
     } catch (err) {
