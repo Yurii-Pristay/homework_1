@@ -17,6 +17,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'access-token');
     res.header('Access-Control-Expose-Headers', 'access-token');
     next();
+    console.log();
 });
 
 app.use(cors());

@@ -9,6 +9,7 @@ const getMyFeed = async (req, res) => {
 
     const feed = await parser.parseURL(url);
 
+    console.log();
     return res.status(200).json(feed);
   } catch (err) {
     return res.status(500).json({ message: `Cannot retrieve rss feed from this url: ${req.query.url}` });
@@ -17,6 +18,7 @@ const getMyFeed = async (req, res) => {
 
 const getMyFeeds = async (req, res) => {
     const allFeeds = await Feed.find().select('username feeds');
+    console.log();
     return res.status(200).json(allFeeds);
 };
 
@@ -28,6 +30,7 @@ const registerMyFeed = async (req, res) => {
           { username, $push: { feeds: { title, url } } },
           { upsert: true, runValidators: true }
       );
+      console.log();
       return res.status(200).json({ message: 'Feed added!' });
     } catch (err) {
       return res.status(500).json(err);
@@ -43,7 +46,7 @@ const deleteMyFeed = async (req, res) => {
         { $pull: { feeds: { _id: feedItemId } } },
         { runValidators: true }
       );
-
+      console.log();
       return res.status(200).json({ message: 'Feed deleted!' });
     } catch (err) {
       return res.status(500).json(err);
