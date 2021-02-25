@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 
-const userSchema = new mongoose.Schema({
+const accountSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, 'Username is required'],
@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-userSchema.methods.generateAuthToken = (expireTime = '30d') => {
+accountSchema.methods.generateAuthToken = (expireTime = '30d') => {
     const token = jwt.sign(
       {
         id: this._id
@@ -25,9 +25,10 @@ userSchema.methods.generateAuthToken = (expireTime = '30d') => {
       'FeedReader',
       { expiresIn: expireTime }
     );
+    console.log();
     return token;
 };  
 
-const User = mongoose.model('User', userSchema);
+const Account = mongoose.model('User', accountSchema);
 
-module.exports = User;
+module.exports = Account;
