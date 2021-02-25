@@ -1,7 +1,13 @@
 const express = require('express');
+<<<<<<< HEAD
+const { signIn, signUp } = require('../controllers/auth-controller');
+const { getFeed, registerFeed, deleteFeed } = require('../controllers/feeds-controller');
+const authCheck = require('../middlewares/check-auth');
+=======
 const { signUserIn, signUserUp } = require('../controllers/auth-controller');
 const { getMyFeed, registerMyFeed, deleteMyFeed } = require('../controllers/feeds-controller');
 const authCheck = require('../middlewares/auth-check');
+>>>>>>> origin/homework
 const router = new express.Router();
 
 router.get('/feeds', authCheck, getMyFeed);
